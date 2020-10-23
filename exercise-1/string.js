@@ -81,3 +81,23 @@ function vig(string, code) {
         })
         .join("");
 }
+
+function prop_access(object, path) {
+    if (typeof path != "string") return object;
+
+    if (typeof object != "object" || object == null) {
+        return (path + " not exist");
+    }
+
+    if (path === "") return object;
+
+    const props = path.split(".");
+    let property = object;
+    props.forEach(function (prop) {
+        if (!property.hasOwnProperty(prop)) {
+            return (path + " not exist");
+        }
+        property = property[prop];
+    });
+    return property;
+}
