@@ -7,4 +7,6 @@ function type_check_v1(attr, type){
     return (typeof attr === type);
 }
 
-function type_check_v2()
+function type_check_v2(object, arr){
+    
+}
