@@ -83,21 +83,17 @@ function vig(string, code) {
 }
 
 function prop_access(object, path) {
-    if (typeof path != "string") return object;
-
-    if (typeof object != "object" || object == null) {
-        return (path + " not exist");
-    }
-
+    //Check if path different type string
+    if (typeof path !== "string") return object;
+    //Check object is different a type object or object is null
+    if (typeof object !== "object" || object === null) return `${path} not exist`;
+    //Check path is empty
     if (path === "") return object;
 
-    const props = path.split(".");
-    let property = object;
-    props.forEach(function (prop) {
-        if (!property.hasOwnProperty(prop)) {
-            return (path + " not exist");
-        }
-        property = property[prop];
-    });
-    return property;
+    const arrayPath = path.split(".");
+    for (let prop of arrayPath) {
+        if (!object.hasOwnProperty(prop)) return `${path} not exist`;
+        object = object[prop];
+    }
+    return object;
 }
